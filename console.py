@@ -393,3 +393,6 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
+
+create User email="a@a.com" password="pwd" first_name="Alice" last_name="Smith"
+

@@ -67,13 +67,15 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
-        """Create tables and session"""
-        from models.base_model import Base  # avoid circular import
+    from models.user import User
+    from models.state import State
+    from models.city import City
+    # add other models as needed
 
-        Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session()
+    Base.metadata.create_all(self.__engine)
+    self.__session = scoped_session(sessionmaker(
+        bind=self.__engine, expire_on_commit=False))()
+
 
     def close(self):
         """Close the session"""
